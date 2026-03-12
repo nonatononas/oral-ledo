@@ -325,7 +325,7 @@ body.dark .nav-tab.active, body.dark .nav-tab:hover{color:#fff !important; backg
     <input id="loginPass" type="password" placeholder="Senha">
     <button class="btn-login" onclick="doLogin()">Entrar</button>
     <div id="loginErr"></div>
-    <div class="login-hint">👑 Admin: <b>admin</b> / <b>admin123</b><br>📋 Secretaria: <b>secretaria</b> / <b>sec123</b></div>
+
   </div>
 </div>
 
@@ -4669,7 +4669,10 @@ if(!agendamentos.length){
 
 // ── INIT ──
 document.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('.modal-overlay').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
+  document.querySelectorAll('.modal-overlay').forEach(m=>{
+    const noClose = ['userModal', 'patientModal', 'apptModal', 'dentModal', 'repasseModal', 'despModal'];
+    if(!noClose.includes(m.id)) m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');});
+  });
   document.getElementById('loginPass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
   document.getElementById('apptPacSearch').addEventListener('blur',()=>setTimeout(()=>{document.getElementById('apptPacList').style.display='none';},200));
 });
