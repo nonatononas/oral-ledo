@@ -1278,38 +1278,14 @@ let activeTab='odonto',agendaDate=new Date(),currentDayDate=null;
 let selectedTeeth=[],selectedProcId=null,selectedProcId2=null;
 let chartMensal=null,chartPgto=null;
 
-const save = () => {
-  LS.set('odo_patients', patients);
-  if (_sb) patients.forEach(p => sbUpsert('odo_patients', {id:p.id,nome:p.nome,nascimento:p.nascimento||null,cpf:p.cpf||'',telefone:p.telefone||'',email:p.email||'',sexo:p.sexo||'',endereco:p.endereco||{},alergias:p.alergias||'',obs:p.obs||'',anam:p.anam||{},odontograma:p.odontograma||p.teeth||{},orcamento:p.orcamento||[],procedimentos:p.procedimentos||[],evolucao:p.evolucao||[],dentistaid:p.dentistaId||null,updated_at:new Date().toISOString()}));
-};
-const saveUsers = () => {
-  LS.set('odo_users', users);
-  if (_sb) users.forEach(u => sbUpsertLogin('odo_users',{login:u.login,pass:u.pass,nome:u.nome,role:u.role,dent_vinc:u.dentVinc||null},'login'));
-};
-const saveDents = () => {
-  LS.set('odo_dentistas', dentistas);
-  if (_sb) dentistas.forEach(d => sbUpsert('odo_dentistas',{id:d.id,nome:d.nome,cro:d.cro||'',especialidade:d.especialidade||'',telefone:d.telefone||'',email:d.email||'',cor:d.cor||'#5b6e8c',tipo:d.tipo,pct:d.pct||50}));
-};
-const saveAgenda = () => {
-  LS.set('odo_agenda', agendamentos);
-  if (_sb) agendamentos.forEach(a => sbUpsert('odo_agenda',{id:a.id,data:a.data,hora:a.hora,dentistaid:a.dentistaId||null,pacienteid:a.pacienteId||null,procedimento:a.procedimento||'',duracao:a.duracao||30,status:a.status||'Agendado',obs:a.obs||''}));
-};
-const saveProc = () => {
-  LS.set('odo_procbase', procBase);
-  if (_sb) procBase.forEach(p => sbUpsert('odo_procbase',{id:p.id,cat:p.cat||'',nome:p.nome,valor:p.valor||0}));
-};
-const saveRepasses = () => {
-  LS.set('odo_repasses', repasses);
-  if (_sb) repasses.forEach(r => sbUpsert('odo_repasses',{id:r.id,dentistaid:r.dentistaId||null,data:r.data||null,valor:r.valor||0,periodo:r.periodo||'',status:r.status||'pendente',obs:r.obs||''}));
-};
-const saveDespesas = () => {
-  LS.set('odo_despesas', despesas);
-  if (_sb) despesas.forEach(d => sbUpsert('odo_despesas',{id:d.id,data:d.data||null,descricao:d.descricao||'',valor:d.valor||0,categoria:d.categoria||'',obs:d.obs||''}));
-};
-const saveBloqueios = () => {
-  LS.set('odo_bloqueios', bloqueios);
-  if (_sb) bloqueios.forEach(b => sbUpsert('odo_bloqueios',{id:b.id,dentistaid:b.dentistaId||null,tipo:b.tipo||'',data_ini:b.dataIni||null,data_fim:b.dataFim||null,hora_ini:b.horaIni||'',hora_fim:b.horaFim||'',obs:b.obs||''}));
-};
+const save=()=>{LS.set('odo_patients',patients);if(_sb)patients.forEach(p=>sbUpsert('odo_patients',{id:p.id,nome:p.nome,nascimento:p.nascimento||null,cpf:p.cpf||'',telefone:p.telefone||'',email:p.email||'',sexo:p.sexo||'',endereco:p.endereco||{},alergias:p.alergias||'',obs:p.obs||'',anam:p.anam||{},odontograma:p.odontograma||p.teeth||{},orcamento:p.orcamento||[],procedimentos:p.procedimentos||[],evolucao:p.evolucao||[],dentistaid:p.dentistaId||null,updated_at:new Date().toISOString()}));};
+const saveUsers=()=>{LS.set('odo_users',users);if(_sb)users.forEach(u=>sbUpsertLogin('odo_users',{login:u.login,pass:u.pass,nome:u.nome,role:u.role,dent_vinc:u.dentVinc||null},'login'));};
+const saveDents=()=>{LS.set('odo_dentistas',dentistas);if(_sb)dentistas.forEach(d=>sbUpsert('odo_dentistas',{id:d.id,nome:d.nome,cro:d.cro||'',especialidade:d.especialidade||'',telefone:d.telefone||'',email:d.email||'',cor:d.cor||'#5b6e8c',tipo:d.tipo,pct:d.pct||50}));};
+const saveAgenda=()=>{LS.set('odo_agenda',agendamentos);if(_sb)agendamentos.forEach(a=>sbUpsert('odo_agenda',{id:a.id,data:a.data,hora:a.hora,dentistaid:a.dentistaId||null,pacienteid:a.pacienteId||null,procedimento:a.procedimento||'',duracao:a.duracao||30,status:a.status||'Agendado',obs:a.obs||''}));};
+const saveProc=()=>{LS.set('odo_procbase',procBase);if(_sb)procBase.forEach(p=>sbUpsert('odo_procbase',{id:p.id,cat:p.cat||'',nome:p.nome,valor:p.valor||0}));};
+const saveRepasses=()=>{LS.set('odo_repasses',repasses);if(_sb)repasses.forEach(r=>sbUpsert('odo_repasses',{id:r.id,dentistaid:r.dentistaId||null,data:r.data||null,valor:r.valor||0,periodo:r.periodo||'',status:r.status||'pendente',obs:r.obs||''}));};
+const saveDespesas=()=>{LS.set('odo_despesas',despesas);if(_sb)despesas.forEach(d=>sbUpsert('odo_despesas',{id:d.id,data:d.data||null,descricao:d.descricao||'',valor:d.valor||0,categoria:d.categoria||'',obs:d.obs||''}));};
+const saveBloqueios=()=>{LS.set('odo_bloqueios',bloqueios);if(_sb)bloqueios.forEach(b=>sbUpsert('odo_bloqueios',{id:b.id,dentistaid:b.dentistaId||null,tipo:b.tipo||'',data_ini:b.dataIni||null,data_fim:b.dataFim||null,hora_ini:b.horaIni||'',hora_fim:b.horaFim||'',obs:b.obs||''}));};
 const getP=id=>patients.find(p=>p.id===id);
 const getD=id=>dentistas.find(d=>d.id===id);
 const isAdmin=()=>currentUser?.role==='admin';
@@ -2989,9 +2965,6 @@ function imprimirAtestado(){
   <div id="contratoModal" class="modal-overlay" style="display:none"></div>
   <div id="estoqueModal" class="modal-overlay" style="display:none"></div>
   <div id="metasModal" class="modal-overlay" style="display:none"></div>
-<script>
-if("serviceWorker" in navigator){navigator.serviceWorker.register("/oral-ledo/sw.js").then(function(r){console.log("[PWA] SW ok");}).catch(function(e){console.warn("[PWA] SW:",e);});}
-</script>
 </body></html>`);
   win.document.close();
   closeModal('atestadoModal');
@@ -3073,10 +3046,7 @@ function imprimirContrato(){
     <div class="assin-box"><div class="linha"></div><p>${p.nome}</p><p style="font-size:11px">Paciente/Responsável</p></div>
   </div>
   <script>window.onload=()=>window.print();<\/script>
-  <script>
-if("serviceWorker" in navigator){navigator.serviceWorker.register("/oral-ledo/sw.js").then(function(r){console.log("[PWA] SW ok");}).catch(function(e){console.warn("[PWA] SW:",e);});}
-</script>
-</body></html>`);
+  </body></html>`);
   win.document.close();
   closeModal('contratoModal');
 }
@@ -3695,10 +3665,7 @@ function imprimirReceita(){
     <p style="font-size:11px;color:#999">${hoje}</p>
   </div>
   <script>window.onload=()=>{window.print();}<\/script>
-  <script>
-if("serviceWorker" in navigator){navigator.serviceWorker.register("/oral-ledo/sw.js").then(function(r){console.log("[PWA] SW ok");}).catch(function(e){console.warn("[PWA] SW:",e);});}
-</script>
-</body></html>`);
+  </body></html>`);
   win.document.close();
 }
 
@@ -4134,10 +4101,7 @@ function removeRx(pid,i){
 function verRxImg(pid,i){
   const r=getP(pid)?.raiox[i];if(!r?.img)return;
   const w=window.open('','_blank');
-  w.document.write(`<html><body style="margin:0;background:#000;display:flex;align-items:center;justify-content:center;min-height:100vh"><img src="${r.img}" style="max-width:100%;max-height:100vh"><script>
-if("serviceWorker" in navigator){navigator.serviceWorker.register("/oral-ledo/sw.js").then(function(r){console.log("[PWA] SW ok");}).catch(function(e){console.warn("[PWA] SW:",e);});}
-</script>
-</body></html>`);
+  w.document.write(`<html><body style="margin:0;background:#000;display:flex;align-items:center;justify-content:center;min-height:100vh"><img src="${r.img}" style="max-width:100%;max-height:100vh"></body></html>`);
 }
 
 // ══════════════════════════════════════════════
@@ -4372,10 +4336,7 @@ function imprimirRelatorioDentista(dentId){
   </table>
   <div class="footer">Oral Lêdo · Relatório gerado em ${new Date().toLocaleDateString('pt-BR')}</div>
   <script>window.onload=()=>window.print();<\/script>
-  <script>
-if("serviceWorker" in navigator){navigator.serviceWorker.register("/oral-ledo/sw.js").then(function(r){console.log("[PWA] SW ok");}).catch(function(e){console.warn("[PWA] SW:",e);});}
-</script>
-</body></html>`);
+  </body></html>`);
   win.document.close();
 }
 function imprimirRelatorio(){
@@ -4621,9 +4582,15 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('apptPacSearch').addEventListener('blur',()=>setTimeout(()=>{document.getElementById('apptPacList').style.display='none';},200));
 });
 
-</script>
-<script>
-if("serviceWorker" in navigator){navigator.serviceWorker.register("/oral-ledo/sw.js").then(function(r){console.log("[PWA] SW ok");}).catch(function(e){console.warn("[PWA] SW:",e);});}
+// ── PWA Service Worker ──
+if('serviceWorker'in navigator){
+  window.addEventListener('load',()=>{
+    navigator.serviceWorker.register('/oral-ledo/sw.js')
+      .then(r=>console.log('[PWA] SW ok'))
+      .catch(e=>console.warn('[PWA] SW:',e));
+  });
+}
+
 </script>
 </body>
 </html>
